@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+<div>
+    <input id="Username" type="text" placeholder="UserName" />
+
+
+    <input id="password" type="text" placeholder="Password" />
+
+    <input id="email" type="text" placeholder="Email" />
+
+    <input id="role" type="text" placeholder="Role" />
+
+
+    <input id="submit" type="button" value="Post" />
+</div>
+<div>
+    <input id="id-delete" type="text" placeholder="Id-Delete" />
+    <input id="delete" type="button" value="delete" />
+</div>
+<script>
+    // Denna funktion postar ett meddelande på en användares profilsida.
+        $(document).ready(function () {
+            $("#submit").click(getMessageText);
+        });
+
+    function getMessageText() {
+            var Username = $("#Username").val();
+            var password = $("#password").val();
+            var email = $("#email").val();
+            var role = $("#role").val();
+            var message = { UserName: Username, Password: password, Email: email, Role: role }
+            $.ajax({
+                url:'http://insparkwebapi.azurewebsites.net/api/User',
+                type: "POST",
+                data: JSON.stringify(message),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                        window.location.reload();
+                    }
+                });
+    }
+
+    $(document).ready(function () {
+        $("#delete").click(deleteUser);
+    });
+
+    function deleteUser() {
+        var id = $('#id-delete').val();
+        var message = {Id:id}
+        $.ajax({
+            url: 'http://insparkwebapi.azurewebsites.net/api/User/'+id+'',
+            type: "DELETE",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmEmail";
+}
+
+<h2>ConfirmEmail</h2>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<div>
+    <input id="Username" type="text" placeholder="UserName" />
+
+    <input id="submit" type="button" value="Post" />
+
+    <label id="testLabel"/>
+</div>
+
+<script>
+    // Denna funktion postar ett meddelande på en användares profilsida.
+        $(document).ready(function () {
+            $("#submit").click(getMessageText);
+        });
+
+    function getMessageText() {
+        var Username = $("#Username").val();
+
+            $.ajax({
+                url: 'http://aktuelltwebapi.azurewebsites.net/api/ConfirmEmail/Validate/' + Username,
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    $('#testLabel').text("Du är nu bekräftad!").css("color", "green");
+                },
+                error: $(function () {
+                    $('#testLabel').text("Fett fel!").css("color", "red");
+                        })
+                });
+    }
+</script>
