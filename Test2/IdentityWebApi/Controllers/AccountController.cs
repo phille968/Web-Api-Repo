@@ -328,7 +328,7 @@ namespace IdentityWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Role = model.Role };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

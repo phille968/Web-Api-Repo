@@ -55,9 +55,9 @@ namespace IdentityWebApi.Controllers
                 }
             }
 
-            string uncrypted = user.Password;
-            string encrypted = Encryption.Encrypt(uncrypted);
-            user.Password = encrypted;
+            //string uncrypted = user.Password;
+            //string encrypted = Encryption.Encrypt(uncrypted);
+            //user.Password = encrypted;
 
             userRepository.Add(user);
             userRepository.SaveChanges(user);
@@ -105,7 +105,7 @@ namespace IdentityWebApi.Controllers
                 {
                     entity.Email = user.Email;
                     entity.UserName = user.UserName;
-                    entity.Password = user.Password;
+                    //entity.Password = user.Password;
                     entity.PhoneNumber = user.PhoneNumber;
                     entity.Section = user.Section;
                     entity.Role = user.Role;

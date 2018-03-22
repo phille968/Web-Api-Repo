@@ -17,20 +17,14 @@ namespace IdentityWebApi.Models
     {
         public ApplicationUser()
         {
-                this.Group = new HashSet<Group>();
-                PrivateMessageReciever = new HashSet<PrivateMessage>();
-                PrivateMessageSender = new HashSet<PrivateMessage>();
-                GroupMessageSender = new HashSet<GroupMessage>();
-                IsEmailConfirmed = false;
-                ConfirmToken = ReplaceCharacters("+", "/", "=");
- 
+            this.Group = new HashSet<Group>();
+            PrivateMessageReciever = new HashSet<PrivateMessage>();
+            PrivateMessageSender = new HashSet<PrivateMessage>();
+            GroupMessageSender = new HashSet<GroupMessage>();
+            IsEmailConfirmed = false;
+            ConfirmToken = ReplaceCharacters("+", "/", "=");
+
         }
-        public override string Email { get; set; }
-        [Required]
-        public override string UserName { get; set; }
-        [Required]
-        public string Password { get; set; }
-        public override string PhoneNumber { get; set; }
         public string Section { get; set; }
         [Required]
         public string Role { get; set; }

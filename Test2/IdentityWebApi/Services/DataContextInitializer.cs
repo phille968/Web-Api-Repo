@@ -11,7 +11,7 @@ using System.Web;
 
 namespace IdentityWebApi.Services
 {
-    public class DataContextInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class DataContextInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext dataContext)
         {
@@ -73,7 +73,7 @@ namespace IdentityWebApi.Services
             {
                 FirstName = "Jesper",
                 LastName = "Andersson",
-                Password = "test",
+                //Password = "test",
                 Email = "jesper@live.se",
                 UserName = "Jesper",
                 Role = "Kodapa"
